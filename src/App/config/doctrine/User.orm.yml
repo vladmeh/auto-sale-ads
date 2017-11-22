@@ -1,0 +1,30 @@
+App\Entity\User:
+  type: entity
+  table: user
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 42
+    email:
+      type: string
+      length: 42
+    phone:
+      type: string
+      length: 42
+    address:
+      type: string
+      length: 255
+    role_id:
+      type: integer
+      length: 8
+  manyToOne:
+    role:
+      targetEntity: Role
+      joinColumn:
+        name: role_id
+        referencedColumnName: id

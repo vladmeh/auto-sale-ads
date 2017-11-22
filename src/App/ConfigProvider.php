@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use \Doctrine\ORM\Mapping\Driver\SimplifiedYamlDriver;
 
 /**
  * The configuration provider for the App module
@@ -21,6 +22,7 @@ class ConfigProvider
     {
         return [
             'dependencies' => $this->getDependencies(),
+            'doctrine'     => $this->getDoctrine(),
             'templates'    => $this->getTemplates(),
         ];
     }
@@ -54,6 +56,26 @@ class ConfigProvider
                 'app'    => ['templates/app'],
                 'error'  => ['templates/error'],
                 'layout' => ['templates/layout'],
+            ],
+        ];
+    }
+
+    public function getDoctrine()
+    {
+        return [
+            'driver' => [
+                'orm_default' => [
+                    'drivers' => [
+                        'App\Entity' => 'app_entity',
+                    ],
+                ],
+                'app_entity' => [
+                    'class' => SimplifiedYamlDriver::class,
+                    'cache' => 'array',
+                    'paths' => [
+                        dirname(__DIR__) . '/App/config/doctrine' => 'App\Entity',
+                    ],
+                ],
             ],
         ];
     }

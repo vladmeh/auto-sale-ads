@@ -22,6 +22,8 @@ return [
         'invokables' => [
             // Fully\Qualified\InterfaceName::class => Fully\Qualified\ClassName::class,
             Helper\ServerUrlHelper::class => Helper\ServerUrlHelper::class,
+
+            Doctrine\DBAL\Logging\DebugStack::class => Doctrine\DBAL\Logging\DebugStack::class,
         ],
         // Use 'factories' for services provided by callbacks/factory classes.
         'factories'  => [
@@ -34,6 +36,15 @@ return [
             Zend\Stratigility\Middleware\ErrorHandler::class => Container\ErrorHandlerFactory::class,
             Middleware\ErrorResponseGenerator::class         => Container\ErrorResponseGeneratorFactory::class,
             Middleware\NotFoundHandler::class                => Container\NotFoundHandlerFactory::class,
+
+            Doctrine\ORM\EntityManager::class  => ContainerInteropDoctrine\EntityManagerFactory::class,
         ],
+        // Что бы не писать для каждого класса Factory для получения зависимости, добавляем абстрактную "фабрику"
+        // на основе рефлексии. Теперь нам нужно создавать фабрики только в исключительных случаях,
+        // когда нужно что-то отличное от службы по умолчанию.
+        'abstract_factories' => [
+            \Zend\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory::class
+        ],
+
     ],
 ];
