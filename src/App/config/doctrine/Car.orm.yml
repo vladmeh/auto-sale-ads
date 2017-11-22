@@ -1,0 +1,56 @@
+App\Entity\Car:
+  type: entity
+  table: car
+  id:
+    id:
+      type: integer
+      generator:
+        startegy: AUTO
+  fields:
+    brandId:
+      type: integer
+      length: 8
+    modelId:
+      type: integer
+      leingth: 8
+    bodyTypeId:
+      type: integer
+      leingth: 8
+    year:
+      type: integer
+      length: 4
+    mileageId:
+      type: integer
+      length: 4
+    buildId:
+      type: integer
+      length: 4
+    description:
+      type: string
+      length: 255
+  manyToOne:
+    brand:
+      targetEntity: CarBrand
+      joinColumn:
+        name: brandId
+        referencedColumnName: id
+    model:
+      targetEntity: CarModel
+      joinColumn:
+        name: modelId
+        referencedColumnName: id
+    bodyType:
+      targetEntity: CarBodyType
+      joinColumn:
+        name: bodyTypeId
+        referencedColumnName: id
+    mileage:
+      targetEntity: CarMileage
+      joinColumn:
+        name: mileageId
+        referencedColumnName: id
+    build:
+      targetEntity: CarBuild
+      joinColumn:
+        name: buildId
+        referencedColumnName: id

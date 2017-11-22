@@ -1,0 +1,16 @@
+App\Entity\CarBuild:
+  type: entity
+  table: car_build
+  id:
+    id:
+      type: integer
+      generator:
+        startegy: AUTO
+  fields:
+    name:
+      type: string
+      length: 42
+  oneToMany:
+    cars:
+      targetEntity: Car
+      mappedBy: buildId

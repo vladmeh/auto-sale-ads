@@ -19,7 +19,7 @@ App\Entity\Advertisement:
       type: date
     car_id:
       type: integer
-      leingth: 16
+      length: 16
     user_id:
       type: integer
-      leingth: 16
+      length: 16

@@ -1,0 +1,16 @@
+App\Entity\CarModel:
+  type: entity
+  table: car_model
+  id:
+    id:
+      type: integer
+      generator:
+        startegy: AUTO
+  fields:
+    name:
+      type: string
+      length: 42
+  oneToMany:
+    cars:
+      targetEntity: Car
+      mappedBy: modelId
