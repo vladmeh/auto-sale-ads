@@ -19,12 +19,12 @@ App\Entity\User:
     address:
       type: string
       length: 255
-    role_id:
+    roleId:
       type: integer
       length: 8
   manyToOne:
     role:
       targetEntity: Role
       joinColumn:
-        name: role_id
+        name: roleId
         referencedColumnName: id

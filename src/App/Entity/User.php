@@ -2,43 +2,67 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * User
+ *
+ * @ORM\Table(name="user")
+ * @ORM\Entity
  */
 class User
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=42)
      */
     private $name;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=42)
      */
     private $email;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="phone", type="string", length=42)
      */
     private $phone;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="address", type="string", length=255)
      */
     private $address;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="roleId", type="integer", length=8)
      */
-    private $role_id;
+    private $roleId;
 
     /**
      * @var \App\Entity\Role
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Role")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="roleId", referencedColumnName="id")
+     * })
      */
     private $role;
 
@@ -158,7 +182,7 @@ class User
      */
     public function setRoleId($roleId)
     {
-        $this->role_id = $roleId;
+        $this->roleId = $roleId;
 
         return $this;
     }
@@ -170,7 +194,7 @@ class User
      */
     public function getRoleId()
     {
-        return $this->role_id;
+        return $this->roleId;
     }
 
     /**

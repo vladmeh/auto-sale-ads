@@ -10,3 +10,7 @@ App\Entity\Role:
     name:
       type: string
       length: 42
+  oneToMany:
+    users:
+      targetEntity: User
+      mappedBy: roleId
