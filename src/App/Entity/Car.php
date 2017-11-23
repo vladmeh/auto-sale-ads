@@ -45,21 +45,21 @@ class Car
     /**
      * @var integer
      *
-     * @ORM\Column(name="year", type="integer", length=4)
+     * @ORM\Column(name="yearIssue", type="integer", length=4)
      */
-    private $year;
+    private $yearIssue;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="mileageId", type="integer", length=4)
+     * @ORM\Column(name="mileage", type="integer", length=4)
      */
-    private $mileageId;
+    private $mileage;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="buildId", type="integer", length=4)
+     * @ORM\Column(name="buildId", type="integer", length=8)
      */
     private $buildId;
 
@@ -71,9 +71,9 @@ class Car
     private $description;
 
     /**
-     * @var CarBrand
+     * @var \App\Entity\CarBrand
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\CarBrand")
+     * @ORM\ManyToOne(targetEntity="App\Entity\CarBrand", inversedBy="cars")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="brandId", referencedColumnName="id")
      * })
@@ -81,9 +81,9 @@ class Car
     private $brand;
 
     /**
-     * @var CarModel
+     * @var \App\Entity\CarModel
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\CarModel")
+     * @ORM\ManyToOne(targetEntity="App\Entity\CarModel", inversedBy="cars")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="modelId", referencedColumnName="id")
      * })
@@ -91,9 +91,9 @@ class Car
     private $model;
 
     /**
-     * @var CarBodyType
+     * @var \App\Entity\CarBodyType
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\CarBodyType")
+     * @ORM\ManyToOne(targetEntity="App\Entity\CarBodyType", inversedBy="cars")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="bodyTypeId", referencedColumnName="id")
      * })
@@ -101,19 +101,9 @@ class Car
     private $bodyType;
 
     /**
-     * @var CarMileage
+     * @var \App\Entity\CarBuild
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\CarMileage")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="mileageId", referencedColumnName="id")
-     * })
-     */
-    private $mileage;
-
-    /**
-     * @var CarBuild
-     *
-     * @ORM\ManyToOne(targetEntity="App\Entity\CarBuild")
+     * @ORM\ManyToOne(targetEntity="App\Entity\CarBuild", inversedBy="cars")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="buildId", referencedColumnName="id")
      * })
@@ -204,51 +194,51 @@ class Car
     }
 
     /**
-     * Set year
+     * Set yearIssue
      *
-     * @param integer $year
+     * @param integer $yearIssue
      *
      * @return Car
      */
-    public function setYear($year)
+    public function setYearIssue($yearIssue)
     {
-        $this->year = $year;
+        $this->yearIssue = $yearIssue;
 
         return $this;
     }
 
     /**
-     * Get year
+     * Get yearIssue
      *
      * @return integer
      */
-    public function getYear()
+    public function getYearIssue()
     {
-        return $this->year;
+        return $this->yearIssue;
     }
 
     /**
-     * Set mileageId
+     * Set mileage
      *
-     * @param integer $mileageId
+     * @param integer $mileage
      *
      * @return Car
      */
-    public function setMileageId($mileageId)
+    public function setMileage($mileage)
     {
-        $this->mileageId = $mileageId;
+        $this->mileage = $mileage;
 
         return $this;
     }
 
     /**
-     * Get mileageId
+     * Get mileage
      *
      * @return integer
      */
-    public function getMileageId()
+    public function getMileage()
     {
-        return $this->mileageId;
+        return $this->mileage;
     }
 
     /**
@@ -302,11 +292,11 @@ class Car
     /**
      * Set brand
      *
-     * @param CarBrand $brand
+     * @param \App\Entity\CarBrand $brand
      *
      * @return Car
      */
-    public function setBrand(CarBrand $brand = null)
+    public function setBrand(\App\Entity\CarBrand $brand = null)
     {
         $this->brand = $brand;
 
@@ -316,7 +306,7 @@ class Car
     /**
      * Get brand
      *
-     * @return CarBrand
+     * @return \App\Entity\CarBrand
      */
     public function getBrand()
     {
@@ -326,11 +316,11 @@ class Car
     /**
      * Set model
      *
-     * @param CarModel $model
+     * @param \App\Entity\CarModel $model
      *
      * @return Car
      */
-    public function setModel(CarModel $model = null)
+    public function setModel(\App\Entity\CarModel $model = null)
     {
         $this->model = $model;
 
@@ -340,7 +330,7 @@ class Car
     /**
      * Get model
      *
-     * @return CarModel
+     * @return \App\Entity\CarModel
      */
     public function getModel()
     {
@@ -350,11 +340,11 @@ class Car
     /**
      * Set bodyType
      *
-     * @param CarBodyType $bodyType
+     * @param \App\Entity\CarBodyType $bodyType
      *
      * @return Car
      */
-    public function setBodyType(CarBodyType $bodyType = null)
+    public function setBodyType(\App\Entity\CarBodyType $bodyType = null)
     {
         $this->bodyType = $bodyType;
 
@@ -364,7 +354,7 @@ class Car
     /**
      * Get bodyType
      *
-     * @return CarBodyType
+     * @return \App\Entity\CarBodyType
      */
     public function getBodyType()
     {
@@ -372,37 +362,13 @@ class Car
     }
 
     /**
-     * Set mileage
-     *
-     * @param CarMileage $mileage
-     *
-     * @return Car
-     */
-    public function setMileage(CarMileage $mileage = null)
-    {
-        $this->mileage = $mileage;
-
-        return $this;
-    }
-
-    /**
-     * Get mileage
-     *
-     * @return CarMileage
-     */
-    public function getMileage()
-    {
-        return $this->mileage;
-    }
-
-    /**
      * Set build
      *
-     * @param CarBuild $build
+     * @param \App\Entity\CarBuild $build
      *
      * @return Car
      */
-    public function setBuild(CarBuild $build = null)
+    public function setBuild(\App\Entity\CarBuild $build = null)
     {
         $this->build = $build;
 
@@ -412,7 +378,7 @@ class Car
     /**
      * Get build
      *
-     * @return CarBuild
+     * @return \App\Entity\CarBuild
      */
     public function getBuild()
     {

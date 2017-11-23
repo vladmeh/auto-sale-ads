@@ -31,7 +31,7 @@ class Role
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="roleId")
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="role")
      */
     private $users;
 

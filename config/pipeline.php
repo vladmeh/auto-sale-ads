@@ -1,5 +1,6 @@
 <?php
 
+use Zend\Expressive\Application;
 use Zend\Expressive\Helper\ServerUrlMiddleware;
 use Zend\Expressive\Helper\UrlHelperMiddleware;
 use Zend\Expressive\Middleware\ImplicitHeadMiddleware;
@@ -9,6 +10,8 @@ use Zend\Stratigility\Middleware\ErrorHandler;
 
 /**
  * Setup middleware pipeline:
+ *
+ * @var Application $app
  */
 
 // The error handler should be the first (most outer) middleware to catch

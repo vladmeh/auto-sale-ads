@@ -13,4 +13,4 @@ App\Entity\Role:
   oneToMany:
     users:
       targetEntity: User
-      mappedBy: roleId
+      mappedBy: role

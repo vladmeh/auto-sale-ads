@@ -13,4 +13,4 @@ App\Entity\CarModel:
   oneToMany:
     cars:
       targetEntity: Car
-      mappedBy: modelId
+      mappedBy: model

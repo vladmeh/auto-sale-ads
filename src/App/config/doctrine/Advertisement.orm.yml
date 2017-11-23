@@ -13,10 +13,10 @@ App\Entity\Advertisement:
     description:
       type: string
       length: 255
-    create:
-      type: date
-    update:
-      type: date
+    dateCreate:
+      type: datetime
+    dateUpdate:
+      type: datetime
     carId:
       type: integer
       length: 16

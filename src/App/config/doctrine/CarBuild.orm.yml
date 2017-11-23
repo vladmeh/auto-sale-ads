@@ -13,4 +13,4 @@ App\Entity\CarBuild:
   oneToMany:
     cars:
       targetEntity: Car
-      mappedBy: buildId
+      mappedBy: build

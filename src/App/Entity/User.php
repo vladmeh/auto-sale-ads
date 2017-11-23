@@ -59,7 +59,7 @@ class User
     /**
      * @var \App\Entity\Role
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Role")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Role", inversedBy="users")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="roleId", referencedColumnName="id")
      * })

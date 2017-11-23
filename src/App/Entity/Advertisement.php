@@ -38,16 +38,16 @@ class Advertisement
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="create", type="date")
+     * @ORM\Column(name="dateCreate", type="datetime")
      */
-    private $create;
+    private $dateCreate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="update", type="date")
+     * @ORM\Column(name="dateUpdate", type="datetime")
      */
-    private $update;
+    private $dateUpdate;
 
     /**
      * @var integer
@@ -123,51 +123,51 @@ class Advertisement
     }
 
     /**
-     * Set create
+     * Set dateCreate
      *
-     * @param \DateTime $create
+     * @param \DateTime $dateCreate
      *
      * @return Advertisement
      */
-    public function setCreate($create)
+    public function setDateCreate($dateCreate)
     {
-        $this->create = $create;
+        $this->dateCreate = $dateCreate;
 
         return $this;
     }
 
     /**
-     * Get create
+     * Get dateCreate
      *
      * @return \DateTime
      */
-    public function getCreate()
+    public function getDateCreate()
     {
-        return $this->create;
+        return $this->dateCreate;
     }
 
     /**
-     * Set update
+     * Set dateUpdate
      *
-     * @param \DateTime $update
+     * @param \DateTime $dateUpdate
      *
      * @return Advertisement
      */
-    public function setUpdate($update)
+    public function setDateUpdate($dateUpdate)
     {
-        $this->update = $update;
+        $this->dateUpdate = $dateUpdate;
 
         return $this;
     }
 
     /**
-     * Get update
+     * Get dateUpdate
      *
      * @return \DateTime
      */
-    public function getUpdate()
+    public function getDateUpdate()
     {
-        return $this->update;
+        return $this->dateUpdate;
     }
 
     /**

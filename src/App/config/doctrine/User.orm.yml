@@ -25,6 +25,7 @@ App\Entity\User:
   manyToOne:
     role:
       targetEntity: Role
+      inversedBy: users
       joinColumn:
         name: roleId
         referencedColumnName: id

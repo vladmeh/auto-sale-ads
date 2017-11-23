@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,7 +31,7 @@ class CarModel
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\Car", mappedBy="modelId")
+     * @ORM\OneToMany(targetEntity="App\Entity\Car", mappedBy="model")
      */
     private $cars;
 
@@ -41,7 +40,7 @@ class CarModel
      */
     public function __construct()
     {
-        $this->cars = new ArrayCollection();
+        $this->cars = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -81,11 +80,11 @@ class CarModel
     /**
      * Add car
      *
-     * @param Car $car
+     * @param \App\Entity\Car $car
      *
      * @return CarModel
      */
-    public function addCar(Car $car)
+    public function addCar(\App\Entity\Car $car)
     {
         $this->cars[] = $car;
 
@@ -95,9 +94,9 @@ class CarModel
     /**
      * Remove car
      *
-     * @param Car $car
+     * @param \App\Entity\Car $car
      */
-    public function removeCar(Car $car)
+    public function removeCar(\App\Entity\Car $car)
     {
         $this->cars->removeElement($car);
     }

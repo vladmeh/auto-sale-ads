@@ -13,4 +13,4 @@ App\Entity\CarBodyType:
   oneToMany:
     cars:
       targetEntity: Car
-      mappedBy: bodyTypeId
+      mappedBy: bodyType
