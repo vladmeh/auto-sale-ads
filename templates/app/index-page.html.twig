@@ -4,7 +4,7 @@
 
 {% block stylesheets %}
     <style>
-        .form-control {
+        form > .form-control, form > .input-group {
             margin-top: 10px;
         }
 
@@ -34,6 +34,10 @@
                 {{ forms.input('mileage', 'car_mileage', 'Пробег') }}
                 {{ forms.select('build', 'car_build', 'Состояние', carBuilds) }}
                 {{ forms.textarea('description', 'car_description', 'Дополнительные сведения об автомобиле') }}
+                <div class="input-group">
+                    <input type="text" class="form-control" id="inputGroupSuccess4" aria-describedby="inputGroupSuccess4Status">
+                    <span class="input-group-addon">т.км.</span>
+                </div>
             </form>
 
         </div>
