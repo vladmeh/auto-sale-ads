@@ -5,7 +5,7 @@ App\Entity\CarMileage:
     id:
       type: integer
       generator:
-        startegy: AUTO
+        strategy: AUTO
   fields:
     name:
       type: string

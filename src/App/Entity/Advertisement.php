@@ -52,16 +52,16 @@ class Advertisement
     /**
      * @var integer
      *
-     * @ORM\Column(name="car_id", type="integer")
+     * @ORM\Column(name="carId", type="integer", length=16)
      */
-    private $car_id;
+    private $carId;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="user_id", type="integer")
+     * @ORM\Column(name="userId", type="integer", length=16)
      */
-    private $user_id;
+    private $userId;
 
 
     /**
@@ -179,7 +179,7 @@ class Advertisement
      */
     public function setCarId($carId)
     {
-        $this->car_id = $carId;
+        $this->carId = $carId;
 
         return $this;
     }
@@ -191,7 +191,7 @@ class Advertisement
      */
     public function getCarId()
     {
-        return $this->car_id;
+        return $this->carId;
     }
 
     /**
@@ -203,7 +203,7 @@ class Advertisement
      */
     public function setUserId($userId)
     {
-        $this->user_id = $userId;
+        $this->userId = $userId;
 
         return $this;
     }
@@ -215,7 +215,7 @@ class Advertisement
      */
     public function getUserId()
     {
-        return $this->user_id;
+        return $this->userId;
     }
 }
 

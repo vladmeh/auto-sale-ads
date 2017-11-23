@@ -17,9 +17,9 @@ App\Entity\Advertisement:
       type: date
     update:
       type: date
-    car_id:
+    carId:
       type: integer
       length: 16
-    user_id:
+    userId:
       type: integer
       length: 16

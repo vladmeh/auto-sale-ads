@@ -5,7 +5,7 @@ App\Entity\Car:
     id:
       type: integer
       generator:
-        startegy: AUTO
+        strategy: AUTO
   fields:
     brandId:
       type: integer
