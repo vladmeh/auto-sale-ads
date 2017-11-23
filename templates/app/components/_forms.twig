@@ -1,0 +1,16 @@
+{% macro input(name, id, placeholder, type, class ) %}
+    <input type="{{ type|default('text') }}" class="{{ class|default('form-control') }}" placeholder="{{ placeholder|default('') }}..." name="{{ name }}" id="{{ id }}"  />
+{% endmacro %}
+
+{% macro select(name, id, placeholder, optionItems, class) %}
+    <select name="{{ name }}" id="{{ id }}" class="{{ class|default('form-control') }}" required>
+        <option value="0" disabled selected hidden>{{ placeholder|default('') }}...</option>
+        {% for item in optionItems %}
+            <option value="{{ item.id }}">{{ item.name }}</option>
+        {% endfor %}
+    </select>
+{% endmacro %}
+
+{% macro textarea(name, id, placeholder, class, rows) %}
+    <textarea name="{{ name }}" id="{{ id }}" class="{{ class|default('form-control') }}" rows="{{ rows|default(3) }}" placeholder="{{ placeholder|default('') }}..."></textarea>
+{% endmacro %}

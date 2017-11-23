@@ -24,6 +24,9 @@ return [
             Helper\ServerUrlHelper::class => Helper\ServerUrlHelper::class,
 
             Doctrine\DBAL\Logging\DebugStack::class => Doctrine\DBAL\Logging\DebugStack::class,
+
+            Middleware\ImplicitHeadMiddleware::class => Middleware\ImplicitHeadMiddleware::class,
+            Middleware\ImplicitOptionsMiddleware::class => Middleware\ImplicitOptionsMiddleware::class,
         ],
         // Use 'factories' for services provided by callbacks/factory classes.
         'factories'  => [

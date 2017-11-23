@@ -14,3 +14,8 @@ vendor\bin\doctrine orm:schema-tool:update --force --dump-sql --complete
 ```cmd
 vendor\bin\doctrine orm:validate-schema
 ```
+
+**Repository**
+```cmd
+vendor\bin\doctrine orm:generate-repositories --filter="\\Car$" src
+```

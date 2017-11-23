@@ -31,4 +31,5 @@
 use Zend\Expressive\Application;
 
 $app->get('/', App\Action\HomePageAction::class, 'home');
+$app->get('/car', App\Action\IndexAction::class, 'index');
 $app->get('/api/ping', App\Action\PingAction::class, 'api.ping');
