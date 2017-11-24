@@ -1,5 +1,6 @@
 App\Entity\CarModel:
   type: entity
+  repositoryClass: App\Repository\CarModelRepository
   table: car_model
   id:
     id:
@@ -10,7 +11,17 @@ App\Entity\CarModel:
     name:
       type: string
       length: 42
+    brandId:
+      type: integer
+      lenght: 11
   oneToMany:
     cars:
       targetEntity: Car
       mappedBy: model
+  manyToOne:
+    brand:
+      targetEntity: CarBrand
+      inversedBy: models
+      joinColumn:
+        name: brandId
+        referencedColumnName: id

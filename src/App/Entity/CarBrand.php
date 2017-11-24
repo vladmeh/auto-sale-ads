@@ -36,11 +36,19 @@ class CarBrand
     private $cars;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\CarModel", mappedBy="brand")
+     */
+    private $models;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->cars = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->models = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -109,6 +117,40 @@ class CarBrand
     public function getCars()
     {
         return $this->cars;
+    }
+
+    /**
+     * Add model
+     *
+     * @param \App\Entity\CarModel $model
+     *
+     * @return CarBrand
+     */
+    public function addModel(\App\Entity\CarModel $model)
+    {
+        $this->models[] = $model;
+
+        return $this;
+    }
+
+    /**
+     * Remove model
+     *
+     * @param \App\Entity\CarModel $model
+     */
+    public function removeModel(\App\Entity\CarModel $model)
+    {
+        $this->models->removeElement($model);
+    }
+
+    /**
+     * Get models
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getModels()
+    {
+        return $this->models;
     }
 }
 

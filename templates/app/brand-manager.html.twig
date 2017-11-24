@@ -1,0 +1,13 @@
+{% extends '@layout/default.html.twig' %}
+
+{% import "@app/components/_forms.twig" as forms %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-3">
+            <form action="">
+                {{ forms.select('brand', 'car_brand', 'Марка автомобиля', carBrands) }}
+            </form>
+        </div>
+    </div>
+{% endblock %}

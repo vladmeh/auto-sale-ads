@@ -2,6 +2,13 @@
     <input type="{{ type|default('text') }}" class="{{ class|default('form-control') }}" placeholder="{{ placeholder|default('') }}..." name="{{ name }}" id="{{ id }}"  />
 {% endmacro %}
 
+{% macro inputGroupAddon(name, id, addon, placeholder, type, class ) %}
+    <div class="input-group">
+        <input type="{{ type|default('text') }}" class="{{ class|default('form-control') }}" placeholder="{{ placeholder|default('') }}..." name="{{ name }}" id="{{ id }}"  />
+        <span class="input-group-addon">{{ addon }}</span>
+    </div>
+{% endmacro %}
+
 {% macro select(name, id, placeholder, optionItems, class) %}
     <select name="{{ name }}" id="{{ id }}" class="{{ class|default('form-control') }}" required>
         <option value="0" disabled selected hidden>{{ placeholder|default('') }}...</option>

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * CarModel
  *
  * @ORM\Table(name="car_model")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\CarModelRepository")
  */
 class CarModel
 {
@@ -29,11 +29,28 @@ class CarModel
     private $name;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="brandId", type="integer")
+     */
+    private $brandId;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\OneToMany(targetEntity="App\Entity\Car", mappedBy="model")
      */
     private $cars;
+
+    /**
+     * @var \App\Entity\CarBrand
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\CarBrand", inversedBy="models")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="brandId", referencedColumnName="id")
+     * })
+     */
+    private $brand;
 
     /**
      * Constructor
@@ -78,6 +95,30 @@ class CarModel
     }
 
     /**
+     * Set brandId
+     *
+     * @param integer $brandId
+     *
+     * @return CarModel
+     */
+    public function setBrandId($brandId)
+    {
+        $this->brandId = $brandId;
+
+        return $this;
+    }
+
+    /**
+     * Get brandId
+     *
+     * @return integer
+     */
+    public function getBrandId()
+    {
+        return $this->brandId;
+    }
+
+    /**
      * Add car
      *
      * @param \App\Entity\Car $car
@@ -109,6 +150,30 @@ class CarModel
     public function getCars()
     {
         return $this->cars;
+    }
+
+    /**
+     * Set brand
+     *
+     * @param \App\Entity\CarBrand $brand
+     *
+     * @return CarModel
+     */
+    public function setBrand(\App\Entity\CarBrand $brand = null)
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Get brand
+     *
+     * @return \App\Entity\CarBrand
+     */
+    public function getBrand()
+    {
+        return $this->brand;
     }
 }
 

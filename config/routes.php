@@ -32,4 +32,5 @@ use Zend\Expressive\Application;
 
 $app->get('/', App\Action\HomePageAction::class, 'home');
 $app->get('/car', App\Action\IndexAction::class, 'index');
+$app->route('/car/model', App\Action\ModelJsonAction::class, ['GET', 'POST'], 'car.model');
 $app->get('/api/ping', App\Action\PingAction::class, 'api.ping');

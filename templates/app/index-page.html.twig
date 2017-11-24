@@ -1,6 +1,6 @@
 {% extends '@layout/default.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Car{% endblock %}
 
 {% block stylesheets %}
     <style>
@@ -30,16 +30,11 @@
             <form action="">
                 {{ forms.select('brand', 'car_brand', 'Марка автомобиля', carBrands) }}
                 {{ forms.select('bodyType', 'car_bodyType', 'Тип кузова', carBodyTypes) }}
-                {{ forms.input('yearIssue', 'car_year_issue', 'Год выпуска') }}
-                {{ forms.input('mileage', 'car_mileage', 'Пробег') }}
+                {{ forms.inputGroupAddon('yearIssue', 'car_year_issue', 'года ', 'Год выпуска') }}
+                {{ forms.inputGroupAddon('mileage', 'car_mileage', 'т.км.', 'Пробег') }}
                 {{ forms.select('build', 'car_build', 'Состояние', carBuilds) }}
                 {{ forms.textarea('description', 'car_description', 'Дополнительные сведения об автомобиле') }}
-                <div class="input-group">
-                    <input type="text" class="form-control" id="inputGroupSuccess4" aria-describedby="inputGroupSuccess4Status">
-                    <span class="input-group-addon">т.км.</span>
-                </div>
             </form>
-
         </div>
     </div>
 {% endblock %}
