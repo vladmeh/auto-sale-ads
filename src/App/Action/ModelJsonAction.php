@@ -50,23 +50,29 @@ class ModelJsonAction implements ServerMiddlewareInterface
         $queryParams = $request->getQueryParams();
         $parsedBody = $request->getParsedBody();
 
-        if($queryParams){
-            $brandName = $queryParams['brand'];
+        if ($parsedBody){
 
-            /** @var CarBrand $brand */
+            /** @var CarBrand $brand*/
             $brand = $this->entityManager
                 ->getRepository(CarBrand::class)
-                ->findOneByName($brandName);
+                ->find($parsedBody['brand_id']);
 
-
-            if($parsedBody){
+            if ($parsedBody['add_model']){
                 $model = new CarModel();
                 $brand->getModels()->add($model);
-                $model->setName($parsedBody['model']);
+                $model->setName($parsedBody['add_model']);
                 $model->setBrand($brand);
 
                 $this->entityManager->persist($model);
                 $this->entityManager->flush();
+
+                $data = [];
+                foreach ($brand->getModels() as $model){
+                    $data['models'][] = [
+                        'id' => $model->getId(),
+                        'name' => $model->getName()
+                    ];
+                }
             }
 
             $data = [];
@@ -80,10 +86,10 @@ class ModelJsonAction implements ServerMiddlewareInterface
             return new JsonResponse($data);
         }
 
-        $brand = $this->entityManager
+        $brands = $this->entityManager
             ->getRepository(CarBrand::class)
             ->findAll();
 
-        return new HtmlResponse($this->templateRenderer->render('app::brand-manager', ['carBrands' => $brand]));
+        return new HtmlResponse($this->templateRenderer->render('app::brand-manager', ['carBrands' => $brands]));
     }
 }

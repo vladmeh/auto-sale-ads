@@ -4,10 +4,19 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-md-3">
-            <form action="">
+        <form action="">
+            <div class="col-md-3">
                 {{ forms.select('brand', 'car_brand', 'Марка автомобиля', carBrands) }}
-            </form>
-        </div>
+            </div>
+            <div class="col-md-5">
+                <ul id="brand-models"></ul>
+                <div class="input-group">
+                    {{ forms.input('model', 'car_model', 'Новая модель') }}
+                    <span class="input-group-btn">
+                        <button name="add_model" id="add_model" class="btn btn-default" type="button">Добавить модель</button>
+                    </span>
+                </div>
+            </div>
+        </form>
     </div>
 {% endblock %}
