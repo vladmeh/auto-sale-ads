@@ -29,6 +29,7 @@ App\Entity\Car:
     description:
       type: string
       length: 255
+      nullable: true
   manyToOne:
     brand:
       targetEntity: CarBrand

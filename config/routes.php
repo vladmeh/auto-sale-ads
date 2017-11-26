@@ -30,7 +30,10 @@
 
 use Zend\Expressive\Application;
 
+
 $app->get('/', App\Action\HomePageAction::class, 'home');
 $app->get('/car', App\Action\IndexAction::class, 'index');
+$app->get('/ads/add', App\Action\AdsAddForm::class, 'ads.add');
 $app->route('/car/model', App\Action\ModelJsonAction::class, ['GET', 'POST'], 'car.model');
 $app->get('/api/ping', App\Action\PingAction::class, 'api.ping');
+$app->post('/car/add', App\Action\CarAdd::class, 'car.add');
