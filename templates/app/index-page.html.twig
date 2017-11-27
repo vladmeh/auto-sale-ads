@@ -4,22 +4,6 @@
 
 {% block stylesheets %}
     <style>
-        form > .form-control, form > .input-group {
-            margin-bottom: 10px;
-        }
-
-        select:required:invalid {
-            color: #999;
-        }
-
-        option[value=""][disabled] {
-            display: none;
-        }
-
-        option {
-            color: black;
-        }
-
         .price {
             color: red;
         }
@@ -43,15 +27,15 @@
         <div class="col-md-3">
             <h3 class="page-header">Фильтр</h3>
             <form action="">
-                {{ forms.inputGroupAddon('price', 'ads_price', 'руб.', 'Цена до') }}
-                {{ forms.select('brand', 'car_brand', 'Марка автомобиля', carBrands) }}
-                <select name="model" id="car_model" class="form-control" disabled>
+                {{ forms.inputGroupAddon('ads[price]', 'ads_price', 'руб.', 'Цена до') }}
+                {{ forms.select('car[brand]', 'car_brand', 'Марка автомобиля', carBrands) }}
+                <select name="car[model]" id="car_model" class="form-control" disabled>
                     <option value="0" disabled selected hidden>Модель...</option>
                 </select>
-                {{ forms.select('bodyType', 'car_bodyType', 'Тип кузова', carBodyTypes) }}
-                {{ forms.inputGroupAddon('yearIssue', 'car_year_issue', 'года ', 'Год выпуска от') }}
-                {{ forms.inputGroupAddon('mileage', 'car_mileage', 'т.км.', 'Пробег до') }}
-                {{ forms.select('build', 'car_build', 'Состояние', carBuilds) }}
+                {{ forms.select('car[bodyType]', 'car_bodyType', 'Тип кузова', carBodyTypes) }}
+                {{ forms.inputGroupAddon('car[yearIssue]', 'car_year_issue', 'года ', 'Год выпуска от') }}
+                {{ forms.inputGroupAddon('car[mileage]', 'car_mileage', 'т.км.', 'Пробег до') }}
+                {{ forms.select('car[build]', 'car_build', 'Состояние', carBuilds) }}
                 <button name="filter" type="submit" class="btn btn-primary">Фильтровать</button>
                 <a href="{{ path('index') }}" class="btn btn-default">сбросить фильтр</a>
             </form>

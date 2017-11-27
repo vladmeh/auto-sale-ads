@@ -135,44 +135,56 @@ class AdsService
      * @return \Doctrine\Common\Collections\Collection
      */
     public function filterAds($requestQueryParams){
-        $carCriteria = Criteria::create();
-
-        if($requestQueryParams['brand'] && $requestQueryParams['brand'] != '')
-            $carCriteria
-                ->where(Criteria::expr()->eq('brandId', $requestQueryParams['brand']));
-
-        if($requestQueryParams['model'] && $requestQueryParams['model'] != '')
-            $carCriteria
-                ->where(Criteria::expr()->eq('modelId', $requestQueryParams['model']));
-
-        if($requestQueryParams['yearIssue'] && $requestQueryParams['yearIssue'] != '')
-            $carCriteria
-                ->where(Criteria::expr()->gte('yearIssue', $requestQueryParams['yearIssue']));
-
-        if($requestQueryParams['mileage'] && $requestQueryParams['mileage'] != '')
-            $carCriteria
-                ->where(Criteria::expr()->lte('mileage', $requestQueryParams['mileage']));
-
-        if($requestQueryParams['build'] && $requestQueryParams['build'] != '')
-            $carCriteria
-                ->where(Criteria::expr()->eq('buildId', $requestQueryParams['build']));
-
-        $carList = $this->entityManager
-            ->getRepository(Car::class)
-            ->matching($carCriteria);
-
         $arrFilter = [];
-        foreach ($carList as $car){
-            $arrFilter[] = $car->getId();
+        $adsCriteria = Criteria::create();
+
+        if (isset($requestQueryParams['car'])){
+            $filterCar = $requestQueryParams['car'];
+            $carCriteria = Criteria::create();
+
+            if($filterCar['brand'])
+                $carCriteria
+                    ->andWhere(Criteria::expr()->eq('brandId', $filterCar['brand']));
+
+            if($filterCar['model'])
+                $carCriteria
+                    ->andWhere(Criteria::expr()->eq('modelId', $filterCar['model']));
+
+            if($filterCar['bodyType'])
+                $carCriteria
+                    ->andWhere(Criteria::expr()->eq('bodyTypeId', $filterCar['bodyType']));
+
+            if($filterCar['yearIssue'])
+                $carCriteria
+                    ->andWhere(Criteria::expr()->gte('yearIssue', $filterCar['yearIssue']));
+
+            if($filterCar['mileage'])
+                $carCriteria
+                    ->andWhere(Criteria::expr()->lte('mileage', $filterCar['mileage']));
+
+            if($filterCar['build'])
+                $carCriteria
+                    ->andWhere(Criteria::expr()->eq('buildId', $filterCar['build']));
+
+
+            $carList = $this->entityManager
+                ->getRepository(Car::class)
+                ->matching($carCriteria);
+
+
+            foreach ($carList as $car){
+                $arrFilter[] = $car->getId();
+            }
+
+            if (empty($arrFilter))
+                return null;
         }
 
-        $adsCriteria = Criteria::create();
-        if (!empty($arrFilter))
-            $adsCriteria->where(Criteria::expr()->in('carId', $arrFilter));
+        $adsCriteria->andWhere(Criteria::expr()->in('carId', $arrFilter));
 
-        if($requestQueryParams['price'] && $requestQueryParams['price'] != '')
+        if($requestQueryParams['ads']['price'])
             $adsCriteria
-                ->where(Criteria::expr()->lte('price', $requestQueryParams['price']));
+                ->andWhere(Criteria::expr()->lte('price', $requestQueryParams['ads']['price']));
 
 
         $adsList = $this->entityManager
@@ -191,8 +203,11 @@ class AdsService
 
         if (!$ads)
             throw new \RuntimeException('Такого объявления не существует');
+        $car = $ads->getCar();
 
         $this->entityManager->remove($ads);
+        $this->entityManager->remove($car);
+
         $this->entityManager->flush();
     }
 

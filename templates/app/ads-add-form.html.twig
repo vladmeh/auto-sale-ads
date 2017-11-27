@@ -2,26 +2,6 @@
 
 {% block title %}Add{% endblock %}
 
-{% block stylesheets %}
-    <style>
-        form > .form-control, form > .input-group {
-            margin-top: 10px;
-        }
-
-        select:required:invalid {
-            color: #999;
-        }
-
-        option[value=""][disabled] {
-            display: none;
-        }
-
-        option {
-            color: black;
-        }
-    </style>
-{% endblock %}
-
 {% import "@app/components/_forms.twig" as forms %}
 
 {% block content %}
@@ -32,7 +12,7 @@
     </div>
     <div class="row">
         <div class="col-md-9">
-            <form class="form-horizontal" action="{{ path('ads.add.post') }}" method="post" enctype="application/x-www-form-urlencoded">
+            <form class="form-horizontal" action="" method="post" enctype="application/x-www-form-urlencoded">
                 <div class="form-group">
                     <label for="car_brand" class="col-sm-3 control-label">Марка автомобиля</label>
                     <div class="col-sm-9">

@@ -10,20 +10,19 @@
 namespace App\Action;
 
 use App\Entity\Advertisement;
-use App\Entity\Car;
+
 use App\Entity\CarBodyType;
 use App\Entity\CarBrand;
 use App\Entity\CarBuild;
 use App\Service\AdsService;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
+
+
 use Doctrine\ORM\EntityManager;
 use Interop\Http\ServerMiddleware\DelegateInterface;
 use Interop\Http\ServerMiddleware\MiddlewareInterface as ServerMiddlewareInterface;
-use Psr\Http\Message\ResponseInterface;
+
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
-use Zend\Diactoros\Response\JsonResponse;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
 class IndexAction implements ServerMiddlewareInterface
@@ -71,16 +70,13 @@ class IndexAction implements ServerMiddlewareInterface
             ->getRepository(CarBuild::class)
             ->findAll();
 
+        $adsList = $this->entityManager
+            ->getRepository(Advertisement::class)
+            ->findAll();
 
         $requestQueryParams = $request->getQueryParams();
-
-        if (isset($requestQueryParams['filter'])){
+        if (isset($requestQueryParams['filter'])) {
             $adsList = $this->adsService->filterAds($requestQueryParams);
-        }
-        else{
-            $adsList = $this->entityManager
-                ->getRepository(Advertisement::class)
-                ->findAll();
         }
 
 

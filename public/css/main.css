@@ -1,0 +1,15 @@
+form > .form-control, form > .input-group {
+    margin-bottom: 10px;
+}
+
+select:required:invalid {
+    color: #999;
+}
+
+option[value=""][disabled] {
+    display: none;
+}
+
+option {
+    color: black;
+}

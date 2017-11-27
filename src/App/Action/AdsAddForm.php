@@ -14,7 +14,6 @@ use App\Entity\CarBuild;
 use Doctrine\ORM\EntityManager;
 use Interop\Http\ServerMiddleware\DelegateInterface;
 use Interop\Http\ServerMiddleware\MiddlewareInterface as ServerMiddlewareInterface;
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Expressive\Template\TemplateRendererInterface;
@@ -45,6 +44,9 @@ class AdsAddForm implements ServerMiddlewareInterface
 
     public function process(ServerRequestInterface $request, DelegateInterface $delegate)
     {
+        if ($request->getParsedBody())
+            return $delegate->process($request);
+
         $carBrands = $this->entityManager
             ->getRepository(CarBrand::class)
             ->findAll();

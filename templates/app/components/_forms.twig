@@ -3,10 +3,10 @@
            id="{{ id }}" {{ required|default('') }}/>
 {% endmacro %}
 
-{% macro inputGroupAddon(name, id, addon, placeholder, required, pattern, value ) %}
+{% macro inputGroupAddon(name, id, addon, placeholder, required, pattern ) %}
     <div class="input-group">
         <input type="text" class="form-control" placeholder="{{ placeholder|default('') }}..." name="{{ name }}"
-               id="{{ id }}" {{ required|default('') }} pattern="{{ pattern|default('*') }}" value="{{ value|default('') }}"/>
+               id="{{ id }}" {{ required|default('') }} pattern="{{ pattern|default('*') }}"/>
         <span class="input-group-addon">{{ addon }}</span>
     </div>
 {% endmacro %}

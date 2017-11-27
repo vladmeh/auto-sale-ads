@@ -45,9 +45,14 @@ class ModelJsonAction implements ServerMiddlewareInterface
     }
 
 
+    /**
+     * @param ServerRequestInterface $request
+     * @param DelegateInterface $delegate
+     * @return ResponseInterface|HtmlResponse|JsonResponse
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function process(ServerRequestInterface $request, DelegateInterface $delegate)
     {
-        $queryParams = $request->getQueryParams();
         $parsedBody = $request->getParsedBody();
 
         if ($parsedBody){

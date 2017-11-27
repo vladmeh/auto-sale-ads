@@ -32,8 +32,7 @@ use Zend\Expressive\Application;
 
 $app->get('/', App\Action\IndexAction::class, 'index');
 $app->get('/view/:id',App\Action\AdsViewAction::class, 'ads.view');
-$app->post('/add/post', App\Action\AdsAddPost::class, 'ads.add.post');
 $app->route('/update/:id', [App\Action\AdsUpdateForm::class, App\Action\AdsUpdatePost::class], ['GET', 'POST'], 'ads.update');
-$app->get('/add', App\Action\AdsAddForm::class, 'ads.add');
-$app->get('/delete/:id', App\Action\AdsDelete::class, 'ads.delete');
+$app->route('/add', [App\Action\AdsAddForm::class, App\Action\AdsAddPost::class], ['GET', 'POST'], 'ads.add');
 $app->route('/car/model', App\Action\ModelJsonAction::class, ['GET', 'POST'], 'car.model');
+$app->get('/delete/:id', App\Action\AdsDelete::class, 'ads.delete');

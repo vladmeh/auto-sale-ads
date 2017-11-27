@@ -3,10 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>{% block title %}{% endblock %} - zend-expressive</title>
+    <title>{% block title %}{% endblock %} - auto car ads</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
     <style>
         body { padding-top: 60px; }
         .app { display: flex; min-height: 100vh; flex-direction: column; }
@@ -59,7 +60,7 @@
             <hr />
             {% block footer %}
                 <p>
-                    &copy; 2005 - {{ "now"|date("Y") }} by Zend Technologies Ltd. All rights reserved.
+                    &copy; {{ "now"|date("Y") }} by VladMeh.
                 </p>
             {% endblock %}
         </div>

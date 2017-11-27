@@ -8,18 +8,18 @@
 
 namespace App\Action;
 
-use App\Entity\Advertisement;
+
 use App\Service\AdsService;
 use Doctrine\ORM\EntityManager;
 use Interop\Http\ServerMiddleware\DelegateInterface;
 use Interop\Http\ServerMiddleware\MiddlewareInterface as ServerMiddlewareInterface;
-use Psr\Http\Message\ResponseInterface;
+
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Diactoros\Response\HtmlResponse;
+
 use Zend\Diactoros\Response\RedirectResponse;
 use Zend\Expressive\Router\RouteResult;
 use Zend\Expressive\Router\RouterInterface;
-use Zend\Expressive\Template\TemplateRendererInterface;
+
 
 class AdsDelete implements ServerMiddlewareInterface
 {
@@ -56,6 +56,12 @@ class AdsDelete implements ServerMiddlewareInterface
     }
 
 
+    /**
+     * @param ServerRequestInterface $request
+     * @param DelegateInterface $delegate
+     * @return \Psr\Http\Message\ResponseInterface|RedirectResponse
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function process(ServerRequestInterface $request, DelegateInterface $delegate)
     {
         /** @var RouteResult $routeResult */
