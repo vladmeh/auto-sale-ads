@@ -1,0 +1,21 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block stylesheets %}
+    <style>
+        .center-block{
+            max-width: 50%;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="center-block text-center">
+            <div class="well">
+                <h2>Новое объявление добавлено...</h2>
+            </div>
+            <a href="{{ path('index') }}" class="btn btn-primary" role="button">Вернуться к списку объявлений</a>
+            <a href="{{ path('ads.add') }}" class="btn btn-success" role="button">Добавить новое объявление</a>
+        </div>
+    </div>
+{% endblock %}

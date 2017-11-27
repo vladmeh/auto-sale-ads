@@ -10,9 +10,11 @@ App\Entity\Advertisement:
     content:
       type: string
       length: 16777215
+      nullable: true
     description:
       type: string
       length: 255
+      nullable: true
     dateCreate:
       type: datetime
     dateUpdate:
@@ -23,3 +25,14 @@ App\Entity\Advertisement:
     userId:
       type: integer
       length: 16
+      nullable: true
+    price:
+      type: integer
+      length: 16
+  oneToOne:
+    car:
+      targetEntity: Car
+      inversedBy: ads
+      joinColumn:
+        name: carId
+        referencedColumnName: id

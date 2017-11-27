@@ -24,14 +24,14 @@ class Advertisement
     /**
      * @var string
      *
-     * @ORM\Column(name="content", type="string", length=16777215)
+     * @ORM\Column(name="content", type="string", length=16777215, nullable=true)
      */
     private $content;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     private $description;
 
@@ -59,9 +59,26 @@ class Advertisement
     /**
      * @var integer
      *
-     * @ORM\Column(name="userId", type="integer", length=16)
+     * @ORM\Column(name="userId", type="integer", length=16, nullable=true)
      */
     private $userId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="price", type="integer", length=16)
+     */
+    private $price;
+
+    /**
+     * @var \App\Entity\Car
+     *
+     * @ORM\OneToOne(targetEntity="App\Entity\Car", inversedBy="ads")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="carId", referencedColumnName="id", unique=true)
+     * })
+     */
+    private $car;
 
 
     /**
@@ -216,6 +233,54 @@ class Advertisement
     public function getUserId()
     {
         return $this->userId;
+    }
+
+    /**
+     * Set price
+     *
+     * @param integer $price
+     *
+     * @return Advertisement
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return integer
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set car
+     *
+     * @param \App\Entity\Car $car
+     *
+     * @return Advertisement
+     */
+    public function setCar(\App\Entity\Car $car = null)
+    {
+        $this->car = $car;
+
+        return $this;
+    }
+
+    /**
+     * Get car
+     *
+     * @return \App\Entity\Car
+     */
+    public function getCar()
+    {
+        return $this->car;
     }
 }
 

@@ -27,17 +27,22 @@
 {% block content %}
     <div class="row">
         <div class="col-md-9">
-            <form class="form-horizontal" action="{{ path('car.add') }}" method="post" enctype="application/x-www-form-urlencoded">
+            <h1 class="page-header">Новое объявление</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <form class="form-horizontal" action="{{ path('ads.add.post') }}" method="post" enctype="application/x-www-form-urlencoded">
                 <div class="form-group">
                     <label for="car_brand" class="col-sm-3 control-label">Марка автомобиля</label>
                     <div class="col-sm-9">
-                        {{ forms.select('car[brand]', 'car_brand', 'Марка автомобиля', carBrands) }}
+                        {{ forms.select('car[brand]', 'car_brand', 'Марка автомобиля', carBrands, 'required') }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="car_brand" class="col-sm-3 control-label">Марка автомобиля</label>
                     <div class="col-sm-9">
-                        <select name="car[model]" id="car_model" class="form-control" disabled>
+                        <select name="car[model]" id="car_model" class="form-control" disabled required>
                             <option value="0" disabled selected hidden>Модель...</option>
                         </select>
                     </div>
@@ -46,33 +51,40 @@
                 <div class="form-group">
                     <label for="car_bodyType" class="col-sm-3 control-label">Тип кузова</label>
                     <div class="col-sm-9">
-                        {{ forms.select('car[bodyType]', 'car_bodyType', 'Тип кузова', carBodyTypes) }}
+                        {{ forms.select('car[bodyType]', 'car_bodyType', 'Тип кузова', carBodyTypes, 'required') }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="car_year_issue" class="col-sm-3 control-label">Год выпуска</label>
                     <div class="col-sm-9">
-                        {{ forms.inputGroupAddon('car[yearIssue]', 'car_year_issue', 'года ', 'Год выпуска') }}
+                        {{ forms.inputGroupAddon('car[yearIssue]', 'car_year_issue', 'года ', '____', 'required', '[0-9]{4}') }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="car_mileage" class="col-sm-3 control-label">Пробег</label>
                     <div class="col-sm-9">
-                        {{ forms.inputGroupAddon('car[mileage]', 'car_mileage', 'т.км.', 'Пробег') }}
+                        {{ forms.inputGroupAddon('car[mileage]', 'car_mileage', 'т.км.', 'Пробег', 'required', '^[ 0-9]+$') }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="car_build" class="col-sm-3 control-label">Состояние автомобиля</label>
                     <div class="col-sm-9">
-                        {{ forms.select('car[build]', 'car_build', 'Состояние', carBuilds) }}
+                        {{ forms.select('car[build]', 'car_build', 'Состояние', carBuilds, 'required') }}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="car_description" class="col-sm-3 control-label">Дополнительные сведения</label>
+                    <label for="car_description" class="col-sm-3 control-label">Дополнительно</label>
                     <div class="col-sm-9">
-                        {{ forms.textarea('car[description]', 'car_description', 'Дополнительные сведения об автомобиле') }}
+                        {{ forms.textarea('car[description]', 'car_description', 'Цвет, кондиционер, климат-контроль, ABS, обогрев руля и т.д.') }}
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="car_brand" class="col-sm-3 control-label">Цена</label>
+                    <div class="col-sm-9">
+                        {{ forms.inputGroupAddon('ads[price]', 'ads_price', 'руб.', 'Цена', 'required') }}
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-9">
                         <button type="submit" class="btn btn-default" name="add">Добавить</button>

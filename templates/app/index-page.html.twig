@@ -5,7 +5,7 @@
 {% block stylesheets %}
     <style>
         form > .form-control, form > .input-group {
-            margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         select:required:invalid {
@@ -19,6 +19,15 @@
         option {
             color: black;
         }
+
+        .price {
+            color: red;
+        }
+
+        .price::after {
+            content: '\20BD';
+            padding-left: 10px;
+        }
     </style>
 {% endblock %}
 
@@ -26,15 +35,54 @@
 
 {% block content %}
     <div class="row">
+        <div class="col-md-9 col-md-offset-3">
+            <h1 class="page-header">Объявления</h1>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-3">
+            <h3 class="page-header">Фильтр</h3>
             <form action="">
+                {{ forms.inputGroupAddon('price', 'ads_price', 'руб.', 'Цена до') }}
                 {{ forms.select('brand', 'car_brand', 'Марка автомобиля', carBrands) }}
+                <select name="model" id="car_model" class="form-control" disabled>
+                    <option value="0" disabled selected hidden>Модель...</option>
+                </select>
                 {{ forms.select('bodyType', 'car_bodyType', 'Тип кузова', carBodyTypes) }}
-                {{ forms.inputGroupAddon('yearIssue', 'car_year_issue', 'года ', 'Год выпуска') }}
-                {{ forms.inputGroupAddon('mileage', 'car_mileage', 'т.км.', 'Пробег') }}
+                {{ forms.inputGroupAddon('yearIssue', 'car_year_issue', 'года ', 'Год выпуска от') }}
+                {{ forms.inputGroupAddon('mileage', 'car_mileage', 'т.км.', 'Пробег до') }}
                 {{ forms.select('build', 'car_build', 'Состояние', carBuilds) }}
-                {{ forms.textarea('description', 'car_description', 'Дополнительные сведения об автомобиле') }}
+                <button name="filter" type="submit" class="btn btn-primary">Фильтровать</button>
+                <a href="{{ path('index') }}" class="btn btn-default">сбросить фильтр</a>
             </form>
+        </div>
+        <div class="col-md-9">
+            {% if adsList is not empty %}
+                {% for ads in adsList %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading lead">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <a href="{{ path('ads.view', {'id': ads.id}) }}">{{ ads.car.brand.name }} {{ ads.car.model.name }}</a>
+                                </div>
+                                <div class="col-md-3"><span
+                                            class="price">{{ ads.price|number_format(0, '.', '.') }}</span></div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <p>{{ ads.car.yearIssue }} года выпуска,
+                                {{ ads.car.bodyType.name }},
+                                пробег {{ ads.car.mileage }} тыс. км.,
+                                {{ ads.car.build.name }}</p>
+                            <p>{{ ads.car.description|default('') }}</p>
+                            <p>{{ ads.content|default('') }}</p>
+                            <p>{{ ads.description|default('') }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="alert alert-danger" role="alert">К сожалению по выбранному вами филтру ничего не найдено.</div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

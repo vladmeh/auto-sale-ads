@@ -1,0 +1,76 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block stylesheets %}
+    <style>
+        small{
+            float: right;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-9">
+            <div class="page-header">
+                <h1>{{ ads.car.brand.name }} {{ ads.car.model.name }} <small>Добавлено {{ ads.dateCreate|date('Y-m-d') }}</small></h1>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <dl class="dl-horizontal">
+                <dt class="lead">Цена</dt>
+                <dd class="lead">{{ ads.price|number_format(0, '.', '.') }} руб.</dd>
+                <dt>год выпуска</dt>
+                <dd>{{ ads.car.yearIssue }}</dd>
+                <dt>кузов</dt>
+                <dd>{{ ads.car.bodyType.name }}</dd>
+                <dt>пробег</dt>
+                <dd>{{ ads.car.mileage }} тыс. км.</dd>
+                <dt>состояние</dt>
+                <dd>{{ ads.car.build.name }}</dd>
+                {% if ads.car.description is defined and  ads.car.description != '' %}
+                    <dt>дополнительно</dt>
+                    <dd>{{ ads.car.description }}</dd>
+                {% endif %}
+
+                {% if ads.content is defined and ads.content != '' %}
+                    <dt>текст объявления</dt>
+                    <dd>{{ ads.content }}</dd>
+                {% endif %}
+
+                {% if ads.description is defined and ads.description != '' %}
+                    <dt>на заметку</dt>
+                    <dd>{{ ads.description }}</dd>
+                {% endif %}
+            </dl>
+            <hr/>
+            <div class="pull-right">
+                <a href="{{ path('ads.update', { 'id':ads.id }) }}" class="btn btn-success">Редактировать</a>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+                    Удалить
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Удалить {{ ads.car.brand.name }} {{ ads.car.model.name }}</h4>
+                </div>
+                <div class="modal-body">
+                    Вы действительно хотите удалить это объявление!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                    <a href="{{ path('ads.delete', {'id':ads.id}) }}" class="btn btn-danger">Удалить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

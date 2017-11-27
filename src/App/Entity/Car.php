@@ -71,6 +71,13 @@ class Car
     private $description;
 
     /**
+     * @var \App\Entity\Advertisement
+     *
+     * @ORM\OneToOne(targetEntity="App\Entity\Advertisement", mappedBy="car")
+     */
+    private $ads;
+
+    /**
      * @var \App\Entity\CarBrand
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\CarBrand", inversedBy="cars")
@@ -287,6 +294,30 @@ class Car
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set ads
+     *
+     * @param \App\Entity\Advertisement $ads
+     *
+     * @return Car
+     */
+    public function setAds(\App\Entity\Advertisement $ads = null)
+    {
+        $this->ads = $ads;
+
+        return $this;
+    }
+
+    /**
+     * Get ads
+     *
+     * @return \App\Entity\Advertisement
+     */
+    public function getAds()
+    {
+        return $this->ads;
     }
 
     /**

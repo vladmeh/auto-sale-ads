@@ -1,22 +1,17 @@
 <?php
 /**
- * Created by Alpha-Hydro.
- * @link http://www.alpha-hydro.com
- * @author Vladimir Mikhaylov <admin@alpha-hydro.com>
- * @copyright Copyright (c) 2017, Alpha-Hydro
- *
+ * Created by PhpStorm.
+ * User: vlad
+ * Date: 27.11.2017
+ * Time: 2:55
  */
 
 namespace App\Action;
 
 use App\Entity\Advertisement;
-use App\Entity\Car;
 use App\Entity\CarBodyType;
 use App\Entity\CarBrand;
 use App\Entity\CarBuild;
-use App\Service\AdsService;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityManager;
 use Interop\Http\ServerMiddleware\DelegateInterface;
 use Interop\Http\ServerMiddleware\MiddlewareInterface as ServerMiddlewareInterface;
@@ -24,15 +19,11 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Diactoros\Response\JsonResponse;
+use Zend\Expressive\Router\RouteResult;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
-class IndexAction implements ServerMiddlewareInterface
+class AdsUpdateForm implements ServerMiddlewareInterface
 {
-    /**
-     * @var AdsService
-     */
-    private $adsService;
-
     /**
      * @var TemplateRendererInterface
      */
@@ -44,21 +35,37 @@ class IndexAction implements ServerMiddlewareInterface
     private $entityManager;
 
     /**
-     * IndexAction constructor.
+     * AdsUpdateForm constructor.
      * @param TemplateRendererInterface $templateRenderer
      * @param EntityManager $entityManager
-     * @param AdsService $adsService
      */
-    public function __construct(TemplateRendererInterface $templateRenderer, EntityManager $entityManager, AdsService $adsService)
+    public function __construct(TemplateRendererInterface $templateRenderer, EntityManager $entityManager)
     {
         $this->templateRenderer = $templateRenderer;
         $this->entityManager = $entityManager;
-        $this->adsService = $adsService;
     }
 
 
     public function process(ServerRequestInterface $request, DelegateInterface $delegate)
     {
+
+        /** @var RouteResult $routeResult */
+        $routeResult = $request->getAttribute(RouteResult::class);
+
+        $routeMatchedParams = $routeResult->getMatchedParams();
+
+        if (empty($routeMatchedParams['id']))
+            throw new \RuntimeException('Invalid route: "full_path" not set in matched route params.');
+
+        $ads = $this->entityManager->getRepository(Advertisement::class)
+            ->find($routeMatchedParams['id']);
+
+        if (!$ads)
+            return new HtmlResponse($this->templateRenderer->render('error::404'), 404);
+
+        if ($request->getParsedBody())
+            return $delegate->process($request);
+
         $carBrands = $this->entityManager
             ->getRepository(CarBrand::class)
             ->findAll();
@@ -71,25 +78,13 @@ class IndexAction implements ServerMiddlewareInterface
             ->getRepository(CarBuild::class)
             ->findAll();
 
-
-        $requestQueryParams = $request->getQueryParams();
-
-        if (isset($requestQueryParams['filter'])){
-            $adsList = $this->adsService->filterAds($requestQueryParams);
-        }
-        else{
-            $adsList = $this->entityManager
-                ->getRepository(Advertisement::class)
-                ->findAll();
-        }
-
-
         $data = [
             'carBrands' => $carBrands,
             'carBodyTypes' => $carBodyType,
             'carBuilds' => $carBuild,
-            'adsList' => $adsList,
+            'ads' => $ads,
         ];
-        return new HtmlResponse($this->templateRenderer->render('app::index-page', $data));
+
+        return new HtmlResponse($this->templateRenderer->render('app::ads-update-form', $data));
     }
 }

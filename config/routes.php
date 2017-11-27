@@ -30,10 +30,10 @@
 
 use Zend\Expressive\Application;
 
-
-$app->get('/', App\Action\HomePageAction::class, 'home');
-$app->get('/car', App\Action\IndexAction::class, 'index');
-$app->get('/ads/add', App\Action\AdsAddForm::class, 'ads.add');
+$app->get('/', App\Action\IndexAction::class, 'index');
+$app->get('/view/:id',App\Action\AdsViewAction::class, 'ads.view');
+$app->post('/add/post', App\Action\AdsAddPost::class, 'ads.add.post');
+$app->route('/update/:id', [App\Action\AdsUpdateForm::class, App\Action\AdsUpdatePost::class], ['GET', 'POST'], 'ads.update');
+$app->get('/add', App\Action\AdsAddForm::class, 'ads.add');
+$app->get('/delete/:id', App\Action\AdsDelete::class, 'ads.delete');
 $app->route('/car/model', App\Action\ModelJsonAction::class, ['GET', 'POST'], 'car.model');
-$app->get('/api/ping', App\Action\PingAction::class, 'api.ping');
-$app->post('/car/add', App\Action\CarAdd::class, 'car.add');

@@ -55,3 +55,8 @@ App\Entity\Car:
       joinColumn:
         name: buildId
         referencedColumnName: id
+  oneToOne:
+    ads:
+      targetEntity: Advertisement
+      mappedBy: car
+

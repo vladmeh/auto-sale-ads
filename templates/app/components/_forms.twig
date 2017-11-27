@@ -1,16 +1,18 @@
-{% macro input(name, id, placeholder, type, class ) %}
-    <input type="{{ type|default('text') }}" class="{{ class|default('form-control') }}" placeholder="{{ placeholder|default('') }}..." name="{{ name }}" id="{{ id }}"  />
+{% macro input(name, id, placeholder, required ) %}
+    <input type="text" class="form-control" placeholder="{{ placeholder|default('') }}..." name="{{ name }}"
+           id="{{ id }}" {{ required|default('') }}/>
 {% endmacro %}
 
-{% macro inputGroupAddon(name, id, addon, placeholder, type, class ) %}
+{% macro inputGroupAddon(name, id, addon, placeholder, required, pattern, value ) %}
     <div class="input-group">
-        <input type="{{ type|default('text') }}" class="{{ class|default('form-control') }}" placeholder="{{ placeholder|default('') }}..." name="{{ name }}" id="{{ id }}"  />
+        <input type="text" class="form-control" placeholder="{{ placeholder|default('') }}..." name="{{ name }}"
+               id="{{ id }}" {{ required|default('') }} pattern="{{ pattern|default('*') }}" value="{{ value|default('') }}"/>
         <span class="input-group-addon">{{ addon }}</span>
     </div>
 {% endmacro %}
 
-{% macro select(name, id, placeholder, optionItems, class) %}
-    <select name="{{ name }}" id="{{ id }}" class="{{ class|default('form-control') }}" required>
+{% macro select(name, id, placeholder, optionItems, required) %}
+    <select name="{{ name }}" id="{{ id }}" class="form-control" {{ required|default('') }}>
         <option value="0" disabled selected hidden>{{ placeholder|default('') }}...</option>
         {% for item in optionItems %}
             <option value="{{ item.id }}">{{ item.name }}</option>
@@ -18,6 +20,7 @@
     </select>
 {% endmacro %}
 
-{% macro textarea(name, id, placeholder, class, rows) %}
-    <textarea name="{{ name }}" id="{{ id }}" class="{{ class|default('form-control') }}" rows="{{ rows|default(3) }}" placeholder="{{ placeholder|default('') }}..."></textarea>
+{% macro textarea(name, id, placeholder, required, rows) %}
+    <textarea name="{{ name }}" id="{{ id }}" class="form-control" {{ required|default('') }}
+              rows="{{ rows|default(3) }}" placeholder="{{ placeholder|default('') }}..."></textarea>
 {% endmacro %}
