@@ -1,0 +1,66 @@
+INSERT INTO advertisement (id, content, description, dateCreate, dateUpdate, carId, price, userId) VALUES (1, null, null, '2017-11-26 19:11:34', '2017-11-27 08:09:41', 2, 1500000, null);
+INSERT INTO advertisement (id, content, description, dateCreate, dateUpdate, carId, price, userId) VALUES (2, null, null, '2017-11-26 20:14:34', '2017-11-27 06:00:42', 3, 1300000, null);
+INSERT INTO advertisement (id, content, description, dateCreate, dateUpdate, carId, price, userId) VALUES (4, null, null, '2017-11-26 20:30:37', '2017-11-27 05:10:00', 5, 120000, null);
+INSERT INTO advertisement (id, content, description, dateCreate, dateUpdate, carId, price, userId) VALUES (5, null, null, '2017-11-26 20:48:05', '2017-11-27 05:59:32', 6, 265000, null);
+INSERT INTO advertisement (id, content, description, dateCreate, dateUpdate, carId, price, userId) VALUES (6, null, null, '2017-11-27 05:56:42', '2017-11-27 05:56:42', 7, 375000, null);
+
+INSERT INTO car (id, brandId, modelId, bodyTypeId, yearIssue, mileage, buildId, description) VALUES (2, 1, 6, 2, 2004, 200, 3, null);
+INSERT INTO car (id, brandId, modelId, bodyTypeId, yearIssue, mileage, buildId, description) VALUES (3, 2, 11, 4, 2013, 75, 2, 'Черный, климат контроль, ABS');
+INSERT INTO car (id, brandId, modelId, bodyTypeId, yearIssue, mileage, buildId, description) VALUES (5, 3, 16, 1, 2004, 202, 2, 'Серый металлик, климат контроль, кондиционер, блокировка задних дверей, обогрев зеркал, ABS, датчик дождя, датчик света, двигатель 1.6i');
+INSERT INTO car (id, brandId, modelId, bodyTypeId, yearIssue, mileage, buildId, description) VALUES (6, 4, 21, 1, 2007, 155, 2, '1.8 л, 125 л.с., бензин, коробка механическая, привод передний, цвет серебристый');
+INSERT INTO car (id, brandId, modelId, bodyTypeId, yearIssue, mileage, buildId, description) VALUES (7, 5, 29, 1, 2011, 110, 2, 'Коробка механическая, Привод передний, ПТС оригинал, цвет черный,     1.6 л, 123 л.с., бензин');
+
+INSERT INTO car_body_type (id, name) VALUES (1, 'седан');
+INSERT INTO car_body_type (id, name) VALUES (2, 'хетчбэк');
+INSERT INTO car_body_type (id, name) VALUES (3, 'кроссовер');
+INSERT INTO car_body_type (id, name) VALUES (4, 'внедорожник');
+INSERT INTO car_body_type (id, name) VALUES (5, 'универсал');
+INSERT INTO car_body_type (id, name) VALUES (6, 'купе');
+INSERT INTO car_body_type (id, name) VALUES (7, 'минивен');
+INSERT INTO car_body_type (id, name) VALUES (8, 'пикап');
+INSERT INTO car_body_type (id, name) VALUES (9, 'лимузин');
+INSERT INTO car_body_type (id, name) VALUES (10, 'фургон');
+INSERT INTO car_body_type (id, name) VALUES (11, 'кабриолет');
+
+INSERT INTO car_brand (id, name) VALUES (1, 'Audi');
+INSERT INTO car_brand (id, name) VALUES (2, 'BMW');
+INSERT INTO car_brand (id, name) VALUES (3, 'Citroen');
+INSERT INTO car_brand (id, name) VALUES (4, 'Ford');
+INSERT INTO car_brand (id, name) VALUES (5, 'Hyundai');
+
+INSERT INTO car_build (id, name) VALUES (1, 'новый');
+INSERT INTO car_build (id, name) VALUES (2, 'не требует ремонта');
+INSERT INTO car_build (id, name) VALUES (3, 'требует ремонта');
+INSERT INTO car_build (id, name) VALUES (4, 'на запчасти');
+
+INSERT INTO car_model (id, name, brandId) VALUES (1, '80', 1);
+INSERT INTO car_model (id, name, brandId) VALUES (2, 'A3', 1);
+INSERT INTO car_model (id, name, brandId) VALUES (3, 'A4', 1);
+INSERT INTO car_model (id, name, brandId) VALUES (4, 'A5', 1);
+INSERT INTO car_model (id, name, brandId) VALUES (5, 'A6', 1);
+INSERT INTO car_model (id, name, brandId) VALUES (6, 'Q3', 1);
+INSERT INTO car_model (id, name, brandId) VALUES (7, 'Q5', 1);
+INSERT INTO car_model (id, name, brandId) VALUES (8, 'Q7', 1);
+INSERT INTO car_model (id, name, brandId) VALUES (9, 'X1', 2);
+INSERT INTO car_model (id, name, brandId) VALUES (10, 'X3', 2);
+INSERT INTO car_model (id, name, brandId) VALUES (11, 'X4', 2);
+INSERT INTO car_model (id, name, brandId) VALUES (12, 'X5', 2);
+INSERT INTO car_model (id, name, brandId) VALUES (13, 'X6', 2);
+INSERT INTO car_model (id, name, brandId) VALUES (14, 'Berlingo', 3);
+INSERT INTO car_model (id, name, brandId) VALUES (15, 'C-Crosser', 3);
+INSERT INTO car_model (id, name, brandId) VALUES (16, 'C3', 3);
+INSERT INTO car_model (id, name, brandId) VALUES (17, 'C3-Picasso', 3);
+INSERT INTO car_model (id, name, brandId) VALUES (18, 'C4', 3);
+INSERT INTO car_model (id, name, brandId) VALUES (19, 'C5', 3);
+INSERT INTO car_model (id, name, brandId) VALUES (20, 'DS4', 3);
+INSERT INTO car_model (id, name, brandId) VALUES (21, 'Focus', 4);
+INSERT INTO car_model (id, name, brandId) VALUES (22, 'Kuga', 4);
+INSERT INTO car_model (id, name, brandId) VALUES (23, 'Fiesta', 4);
+INSERT INTO car_model (id, name, brandId) VALUES (24, 'Fusion', 4);
+INSERT INTO car_model (id, name, brandId) VALUES (25, 'Mondeo', 4);
+INSERT INTO car_model (id, name, brandId) VALUES (26, 'Explorer', 4);
+INSERT INTO car_model (id, name, brandId) VALUES (27, 'Creta', 5);
+INSERT INTO car_model (id, name, brandId) VALUES (28, 'Elantra', 5);
+INSERT INTO car_model (id, name, brandId) VALUES (29, 'Solaris', 5);
+INSERT INTO car_model (id, name, brandId) VALUES (30, 'Sonata', 5);
+INSERT INTO car_model (id, name, brandId) VALUES (31, 'Tucson', 5);

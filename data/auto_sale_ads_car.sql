@@ -1,0 +1,5 @@
+INSERT INTO `auto-sale-ads`.car (id, brandId, modelId, bodyTypeId, yearIssue, mileage, buildId, description) VALUES (2, 1, 6, 2, 2004, 200, 3, null);
+INSERT INTO `auto-sale-ads`.car (id, brandId, modelId, bodyTypeId, yearIssue, mileage, buildId, description) VALUES (3, 2, 11, 4, 2013, 75, 2, 'Черный, климат контроль, ABS');
+INSERT INTO `auto-sale-ads`.car (id, brandId, modelId, bodyTypeId, yearIssue, mileage, buildId, description) VALUES (5, 3, 16, 1, 2004, 202, 2, 'Серый металлик, климат контроль, кондиционер, блокировка задних дверей, обогрев зеркал, ABS, датчик дождя, датчик света, двигатель 1.6i');
+INSERT INTO `auto-sale-ads`.car (id, brandId, modelId, bodyTypeId, yearIssue, mileage, buildId, description) VALUES (6, 4, 21, 1, 2007, 155, 2, '1.8 л, 125 л.с., бензин, коробка механическая, привод передний, цвет серебристый');
+INSERT INTO `auto-sale-ads`.car (id, brandId, modelId, bodyTypeId, yearIssue, mileage, buildId, description) VALUES (7, 5, 29, 1, 2011, 110, 2, 'Коробка механическая, Привод передний, ПТС оригинал, цвет черный,     1.6 л, 123 л.с., бензин');

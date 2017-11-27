@@ -1,0 +1,5 @@
+INSERT INTO `auto-sale-ads`.advertisement (id, content, description, dateCreate, dateUpdate, carId, price, userId) VALUES (1, null, null, '2017-11-26 19:11:34', '2017-11-27 08:09:41', 2, 1500000, null);
+INSERT INTO `auto-sale-ads`.advertisement (id, content, description, dateCreate, dateUpdate, carId, price, userId) VALUES (2, null, null, '2017-11-26 20:14:34', '2017-11-27 06:00:42', 3, 1300000, null);
+INSERT INTO `auto-sale-ads`.advertisement (id, content, description, dateCreate, dateUpdate, carId, price, userId) VALUES (4, null, null, '2017-11-26 20:30:37', '2017-11-27 05:10:00', 5, 120000, null);
+INSERT INTO `auto-sale-ads`.advertisement (id, content, description, dateCreate, dateUpdate, carId, price, userId) VALUES (5, null, null, '2017-11-26 20:48:05', '2017-11-27 05:59:32', 6, 265000, null);
+INSERT INTO `auto-sale-ads`.advertisement (id, content, description, dateCreate, dateUpdate, carId, price, userId) VALUES (6, null, null, '2017-11-27 05:56:42', '2017-11-27 05:56:42', 7, 375000, null);
