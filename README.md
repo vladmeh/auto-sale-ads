@@ -57,7 +57,7 @@ $ composer install
 * password - ''
 * port - 3306
 
-Для соединения переименовываем конфигурационный файл  `config\autoload\doctrine.local.php.dist` в `config\autoload\doctrine.local.php`.
+Для соединения переименовываем конфигурационный файл  `config/autoload/doctrine.local.php.dist` в `config/autoload/doctrine.local.php`.
 Следующего содержания:
 ```php
 <?php
@@ -87,7 +87,7 @@ Doctrine Command Line Interface 2.5.12
 1. В консоли
 ```bash
 $ vendor/bin/doctrine orm:schema-tool:update --force --dump-sql --complete
-$ vendor/bin/doctrine dbal:import "data\dump.sql"
+$ vendor/bin/doctrine dbal:import "data/dump.sql"
 ```
 
 2. С помощью скрипта `data/script.sql`
@@ -102,7 +102,7 @@ $ php -S localhost:8080 -t public public/index.php
 
 PHP 5.6.31 Development Server started at Mon Nov 27 09:37:46 2017
 Listening on http://localhost:8080
-Document root is E:\OS_Domains\Alpha-Hydro\auto-sale-ads\public
+Document root is ~/auto-sale-ads/public
 Press Ctrl-C to quit.
 .....
 ```
