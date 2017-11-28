@@ -49,6 +49,7 @@ $ composer install
 ```
 
 2. Переименовать файл `config/autoload/development.local.php.dist` в `config/autoload/development.local.php`
+3. Переименовать файл `config/development.config.php.dist` в `config/development.config.php`
 
 ### База данных
 
