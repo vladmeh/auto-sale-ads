@@ -36,3 +36,7 @@ $app->route('/update/:id', [App\Action\AdsUpdateForm::class, App\Action\AdsUpdat
 $app->route('/add', [App\Action\AdsAddForm::class, App\Action\AdsAddPost::class], ['GET', 'POST'], 'ads.add');
 $app->route('/car/model', App\Action\ModelJsonAction::class, ['GET', 'POST'], 'car.model');
 $app->get('/delete/:id', App\Action\AdsDelete::class, 'ads.delete');
+
+$app->route('/login', App\Action\LoginAction::class, ['GET', 'POST'], 'login');
+$app->get('/admin', [App\Action\AuthAction::class, App\Action\AdminAction::class], 'admin');
+$app->route('/admin/user/add', [App\Action\UserAddPost::class], ['GET', 'POST'], 'admin.user.add');

@@ -24,30 +24,65 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=42)
-     */
-    private $name;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=42)
+     * @ORM\Column(name="email", type="string", length=42, unique=true)
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="string", length=42)
+     * @ORM\Column(name="password", type="string")
+     */
+    private $password;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=42, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone", type="string", length=42, nullable=true)
      */
     private $phone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="address", type="string", length=255)
+     * @ORM\Column(name="address", type="string", length=255, nullable=true)
      */
     private $address;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="status", type="integer")
+     */
+    private $status;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateCreate", type="datetime")
+     */
+    private $dateCreate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pwdResetToken", type="string", nullable=true)
+     */
+    private $pwdResetToken;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="pwdResetTokenCreateDate", type="datetime", nullable=true)
+     */
+    private $pwdResetTokenCreateDate;
 
     /**
      * @var integer
@@ -78,30 +113,6 @@ class User
     }
 
     /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return User
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
      * Set email
      *
      * @param string $email
@@ -123,6 +134,54 @@ class User
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return User
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return User
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -171,6 +230,102 @@ class User
     public function getAddress()
     {
         return $this->address;
+    }
+
+    /**
+     * Set status
+     *
+     * @param integer $status
+     *
+     * @return User
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return integer
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set dateCreate
+     *
+     * @param \DateTime $dateCreate
+     *
+     * @return User
+     */
+    public function setDateCreate($dateCreate)
+    {
+        $this->dateCreate = $dateCreate;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreate
+     *
+     * @return \DateTime
+     */
+    public function getDateCreate()
+    {
+        return $this->dateCreate;
+    }
+
+    /**
+     * Set pwdResetToken
+     *
+     * @param string $pwdResetToken
+     *
+     * @return User
+     */
+    public function setPwdResetToken($pwdResetToken)
+    {
+        $this->pwdResetToken = $pwdResetToken;
+
+        return $this;
+    }
+
+    /**
+     * Get pwdResetToken
+     *
+     * @return string
+     */
+    public function getPwdResetToken()
+    {
+        return $this->pwdResetToken;
+    }
+
+    /**
+     * Set pwdResetTokenCreateDate
+     *
+     * @param \DateTime $pwdResetTokenCreateDate
+     *
+     * @return User
+     */
+    public function setPwdResetTokenCreateDate($pwdResetTokenCreateDate)
+    {
+        $this->pwdResetTokenCreateDate = $pwdResetTokenCreateDate;
+
+        return $this;
+    }
+
+    /**
+     * Get pwdResetTokenCreateDate
+     *
+     * @return \DateTime
+     */
+    public function getPwdResetTokenCreateDate()
+    {
+        return $this->pwdResetTokenCreateDate;
     }
 
     /**

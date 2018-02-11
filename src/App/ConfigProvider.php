@@ -1,7 +1,9 @@
 <?php
 
 namespace App;
+use App\Factory\AuthenticationServiceFactory;
 use \Doctrine\ORM\Mapping\Driver\SimplifiedYamlDriver;
+use Zend\Authentication\AuthenticationService;
 
 /**
  * The configuration provider for the App module
@@ -36,10 +38,9 @@ class ConfigProvider
     {
         return [
             'invokables' => [
-                Action\PingAction::class => Action\PingAction::class,
             ],
             'factories'  => [
-                Action\HomePageAction::class => Action\HomePageFactory::class,
+                AuthenticationService::class => AuthenticationServiceFactory::class,
             ],
         ];
     }
