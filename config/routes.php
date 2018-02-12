@@ -47,6 +47,7 @@ $app->route('/delete/:id', [
     App\Action\AuthAction::class,
     App\Action\AdsDelete::class],['GET', 'POST'], 'ads.delete');
 
-$app->route('/login', App\Action\LoginAction::class, ['GET', 'POST'], 'login');
 $app->get('/admin', [App\Action\AuthAction::class, App\Action\AdminAction::class], 'admin');
+$app->route('/login', App\Action\LoginAction::class, ['GET', 'POST'], 'login');
+$app->get('/logout', App\Action\LogoutAction::class, 'logout');
 $app->route('/admin/user/add', [App\Action\UserAddPost::class], ['GET', 'POST'], 'admin.user.add');

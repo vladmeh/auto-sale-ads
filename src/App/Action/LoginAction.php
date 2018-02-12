@@ -80,7 +80,7 @@ class LoginAction implements ServerMiddlewareInterface
 
         $result = $this->authService->authenticate();
         if (!$result->isValid()) {
-            return new HtmlResponse($this->templateRenderer->render('auth::login', [
+            return new HtmlResponse($this->templateRenderer->render('app::login', [
                 'username' => $params['email'],
                 'error'    => 'The credentials provided are not valid',
             ]));
